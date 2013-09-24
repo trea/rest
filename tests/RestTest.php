@@ -216,6 +216,11 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 		$this->assertJsonStringEqualsJsonString(json_encode($json), $response->getContent(), "Invalid JSON Reponse from notFound().");
 	}
 
+	function testConflict() {
+		$response = $this->rest->conflict();
+		$this->assertEquals(409, $response->getStatusCode());
+	}
+
 	function testNotImplemented() {
 		$json = [
 			'result' => NULL,
