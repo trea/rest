@@ -1,13 +1,6 @@
 <?php
-
-use Mockery as m;
-
 class RestTest extends \PHPUnit_Framework_TestCase {
 	
-	public function tearDown() {
-	    \Mockery::close();
-	}
-
 	function setUp() {
 		$this->rest = new Trea\Rest\Rest();
 	}
