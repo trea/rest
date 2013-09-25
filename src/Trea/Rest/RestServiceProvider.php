@@ -18,8 +18,8 @@ class RestServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['rest'] = function($app) {
-			return new Rest($app);
+		$this->app['rest'] = function() {
+			return new Rest();
 		};
 	}
 
@@ -33,4 +33,8 @@ class RestServiceProvider extends ServiceProvider {
 		return array();
 	}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master
