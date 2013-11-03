@@ -13,9 +13,7 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 		$json = [
 			"result" => [
 				'foo' => 'bar'
-			],
-			"errors"=> [],
-			"warnings" => []
+			]
 		];
 
 		$response = $this->rest->okay(['foo' => 'bar']);
@@ -34,7 +32,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors"=> [],
 			"warnings" => (array) $warnings
 		];
 
@@ -56,7 +53,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 		$json = [
 			"result" => (array) $result,
 			"errors" => (array) $errors,
-			"warnings" => []
 		];
 
 		$response = $this->rest->withErrors($errors)->okay($result);
@@ -105,7 +101,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors" => [],
 			"warnings" => (array) array_merge($warning, $warning2)
 		];
 
@@ -126,8 +121,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors" => [],
-			"warnings" => []
 		];
 
 		$response = $this->rest->withHeaders($headers)->okay($result);
@@ -148,8 +141,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors" => [],
-			"warnings" => []
 		];
 
 		$response = $this->rest->withHeaders($headers)->accepted($result);
@@ -166,8 +157,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors" => [],
-			"warnings" => []
 		];
 
 		$response = $this->rest->created($result, 'http://localhost/foo/1');
@@ -184,8 +173,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 
 		$json = [
 			"result" => (array) $result,
-			"errors" => [],
-			"warnings" => []
 		];
 
 		$response = $this->rest->created($result);
@@ -201,7 +188,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 			"errors"=> [
 				"not_found" => "The resource requested could not be found at this URI."
 			],
-			"warnings" => []
 		];
 
 		$response = $this->rest->notFound();
@@ -220,7 +206,6 @@ class RestTest extends \PHPUnit_Framework_TestCase {
 			'errors' => [
 				'not_implemented' => 'This URI is not yet implemented.'
 			],
-			'warnings' => []
 		];
 
 		$response = $this->rest->notImplemented();
