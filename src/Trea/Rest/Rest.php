@@ -20,22 +20,22 @@ class Rest {
 	}
 
 	function currentPage($page) {
-		$this->pagination['current'] = $page;
+		$this->pagination['current'] = (int) $page;
 		return $this;
 	}
 
 	function of ($pages) {
-		$this->pagination['pagesCount'] = $pages;
+		$this->pagination['pagesCount'] = (int) $pages;
 		return $this;
 	}
 
 	function totalItems($total) {
-		$this->pagination['totalItems'] = $total;
+		$this->pagination['totalItems'] = (int) $total;
 		return $this;
 	}
 
 	function limited($items) {
-		$this->pagination['displayItems'] = $items;
+		$this->pagination['displayItems'] = (int) $items;
 		return $this;
 	}
 
