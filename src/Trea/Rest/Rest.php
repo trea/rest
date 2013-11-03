@@ -8,13 +8,35 @@ class Rest {
 	protected $response;
 
 	protected $result;
-	protected $errors;
-	protected $warnings;
+	protected $errors = [];
+	protected $warnings = [];
+
+	protected $pagination;
 
 	protected $headers = [];
 
 	function getVersion() {
 		return self::VERSION;
+	}
+
+	function currentPage($page) {
+		$this->pagination['current'] = $page;
+		return $this;
+	}
+
+	function of ($pages) {
+		$this->pagination['pagesCount'] = $pages;
+		return $this;
+	}
+
+	function totalItems($total) {
+		$this->pagination['totalItems'] = $total;
+		return $this;
+	}
+
+	function limited($items) {
+		$this->pagination['displayItems'] = $items;
+		return $this;
 	}
 
 	/**
@@ -178,13 +200,23 @@ class Rest {
 	 * @return Response
 	 */
 	private function respond($result, $status, $errors = [], $warnings = []) {
-		if (count($this->errors) > 0) {
-			$errors = (array) array_merge($this->errors, $errors);
+		$response = [
+			'result' => $result
+		];
+
+		if (count($this->errors) > 0  || count($errors) > 0) {
+			$response['errors'] = (array) array_merge($this->errors, $errors);
 		}
-		if (count($this->warnings) > 0) {
-			$warnings = (array) array_merge($this->warnings, $warnings);
+		if (count($this->warnings) > 0 || count($warnings) > 0) {
+			$response['warnings'] = (array) array_merge($this->warnings, $warnings);
 		}
-		$body = json_encode(['result' => $result, 'errors' => $errors, 'warnings' => $warnings]);
+
+		if (is_array($this->pagination)) {
+			$response['pagination'] = $this->pagination;
+		}
+
+		$body = json_encode(array_merge(['result' => $result], $response));
+		$headers = array_merge($this->headers, ['Content-Type' => 'application/json']);
 		return new Response($body, $status, $this->headers);
 	}
 }
