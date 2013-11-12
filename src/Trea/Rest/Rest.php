@@ -190,6 +190,10 @@ class Rest {
 		return $this->respond(null, 501, ['not_implemented' => 'This URI is not yet implemented.']);
 	}
 
+	function methodNotAllowed() {
+		return $this->respond(null, 405);
+	}
+
 
 	/**
 	 * Builds a JSON response including results, errors, and warnings
