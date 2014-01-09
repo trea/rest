@@ -280,7 +280,7 @@ class Rest
      */
     private function transformInput($input)
     {
-        if (is_array($input)) {
+        if (is_array($input) || is_null($input)) {
          
             return $input;
         
