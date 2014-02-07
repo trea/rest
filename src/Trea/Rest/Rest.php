@@ -165,7 +165,7 @@ class Rest
      */
     public function forbidden()
     {
-        return $this->response(null, 403);
+        return $this->respond(null, 403);
     }
 
     /**
