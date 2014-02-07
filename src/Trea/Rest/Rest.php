@@ -222,6 +222,15 @@ class Rest
         return $this->respond(null, 405, ['method_not_allowed' => 'Method type not allowed on resource.']);
     }
 
+    /**
+     * Returns a 500 Internal Server Error response with JSON message
+     * If a more applicable HTTP status can be used, use that instead.
+     * @return Response
+     */
+    public function error()
+    {
+        return $this->respond(null, 500, ['internal_server_error' => 'The server encountered an unexpected condition which prevented it from fulfilling the request.']);
+    }
 
     /**
      * Builds a JSON response including results, errors, and warnings
